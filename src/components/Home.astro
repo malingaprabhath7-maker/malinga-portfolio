@@ -96,11 +96,14 @@ const waLink = 'https://wa.me/' + profile.phone.replace(/\D/g, '');
   </div>
   <ul class="mt-10 border-t border-line">
     {projects.map((p) => (
-      <li data-cat={p.category} class="grid gap-x-6 gap-y-2 border-b border-line py-5 sm:grid-cols-[4rem_1fr_auto]">
+      <li data-cat={p.category} class="grid gap-x-6 gap-y-3 border-b border-line py-6 sm:grid-cols-[3.5rem_11rem_1fr_auto]">
         <span class="text-sm tabular-nums text-muted">{p.year}</span>
+        {p.images?.[0]
+          ? <a href={page(lang, `projects/${p.slug}`)} class="block overflow-hidden rounded-xl border border-line bg-paper" tabindex="-1" aria-hidden="true"><img src={url(p.images.find((i) => !i.phone)?.src ?? p.images[0].src)} alt="" loading="lazy" width="1440" height="900" class="aspect-[16/10] w-full object-cover object-top" /></a>
+          : <span class="hidden aspect-[16/10] place-items-center rounded-xl border border-dashed border-line font-display text-2xl font-bold text-muted sm:grid" aria-hidden="true">{p.name.slice(0, 1)}</span>}
         <div>
           <h3 class="font-display text-xl font-bold tracking-tight">
-            {p[lang].features || p.images ? <a class="hover:text-tea" href={page(lang, `projects/${p.slug}`)}>{p.name}</a> : p.name}
+            {p.en.features || p.images ? <a class="hover:text-tea" href={page(lang, `projects/${p.slug}`)}>{p.name}</a> : p.name}
           </h3>
           <p class="mt-1 max-w-2xl leading-relaxed text-muted">{p[lang].summary}</p>
           {p[lang].status && <p class="mt-1 text-sm font-medium text-indigo">{p[lang].status}</p>}

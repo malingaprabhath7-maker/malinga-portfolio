@@ -223,6 +223,7 @@ export const projects: Project[] = [
     category: 'ai',
     stack: ['Python', 'Streamlit', 'NLTK', 'scikit-learn'],
     repo: gh('FAQ_Chatbot'),
+    images: [{ src: 'images/chatbot.webp', alt: 'FAQ Chatbot answering a question about order tracking' }],
     en: {
       summary: 'Answers frequently asked questions by matching the user’s question to a FAQ list with TF-IDF and cosine similarity. Built for the CodeAlpha AI internship.',
       features: ['NLP preprocessing with NLTK', 'TF-IDF vectors and cosine similarity matching', 'Confidence score and threshold control', 'Streamlit chat interface'],
@@ -238,6 +239,7 @@ export const projects: Project[] = [
     category: 'ai',
     stack: ['Python', 'Gradio', 'deep-translator'],
     repo: gh('AI-Language-Translation-Tool'),
+    images: [{ src: 'images/translator.webp', alt: 'AI Language Translation Tool, English to Sinhala' }],
     en: {
       summary: 'Translates between 15+ languages including Sinhala and Tamil as you type, with a clean interface inspired by Google Translate.',
       features: ['Real-time auto-translation', 'Instant language swap', 'Character counter', 'Deployable to Vercel'],
@@ -251,6 +253,7 @@ export const projects: Project[] = [
     category: 'ai',
     stack: ['Python', 'Flask', 'HTML', 'CSS', 'JavaScript'],
     repo: gh('Python-Calculator'),
+    images: [{ src: 'images/calculator.webp', alt: 'Windows-style calculator showing 125 × 8 = 1000' }],
     en: { summary: 'A web calculator modelled on the Windows standard calculator, with the arithmetic done by a Flask backend. Built for the Codveda Python internship.' },
     si: { summary: 'Windows calculator එකේ ආකෘතියට හදපු, Flask backend එකෙන් ගණනය කරන web calculator එකක්. Codveda Python internship එක සඳහා.' },
   },
@@ -261,6 +264,7 @@ export const projects: Project[] = [
     category: 'web',
     stack: ['HTML', 'CSS', 'JavaScript'],
     repo: gh('tourism-static'),
+    images: [{ src: 'images/travel-home.webp', alt: 'Travel Lanka home page with tour packages' }, { src: 'images/travel-package.webp', alt: 'Sigiriya tour package with booking form' }, { src: 'images/travel-gallery.webp', alt: 'Photo gallery of Sri Lankan destinations' }],
     en: { summary: 'A tour-package site for Sri Lanka with search, package pages, a gallery and a booking form — rebuilt from PHP and MySQL into a static site that deploys for free.' },
     si: { summary: 'Search, package පිටු, gallery සහ booking form සහිත ලංකාවේ සංචාරක පැකේජ වෙබ් අඩවියක් — PHP/MySQL සිට නොමිලේ deploy කළ හැකි static site එකකට.' },
   },
@@ -271,6 +275,7 @@ export const projects: Project[] = [
     category: 'ai',
     stack: ['Python', 'Flask', 'TensorFlow.js', 'Teachable Machine', 'Gemini API', 'SQLite'],
     repo: gh('AgriAid'),
+    images: [{ src: 'images/agriaid-home.webp', alt: 'AgriAid welcome page' }, { src: 'images/agriaid-login.webp', alt: 'AgriAid login with language choice' }],
     en: {
       summary: 'A crop-doctor for Sri Lankan farmers: photograph a sick leaf, get the likely disease and Sinhala treatment advice, then ask follow-up questions to an AI assistant.',
       features: [
