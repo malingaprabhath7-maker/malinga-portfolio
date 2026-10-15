@@ -12,7 +12,7 @@ const phones = p.images?.filter((i) => i.phone) ?? [];
 <article class="mx-auto max-w-6xl px-5 pb-24 pt-10">
   <a href={page(lang) + '#projects'} class="text-sm font-medium text-muted hover:text-ink">← {t.back}</a>
   <header class="mt-8 max-w-3xl">
-    <p class="text-sm font-semibold text-tea">{p.year}</p>
+    <p class="text-sm font-semibold text-tea">{c.badge ? `${c.badge} · ${p.year}` : p.year}</p>
     <h1 class="mt-1 font-display text-5xl font-extrabold tracking-tight sm:text-6xl">{p.name}</h1>
     <p class="mt-5 text-xl leading-relaxed">{c.summary}</p>
     <div class="mt-7 flex flex-wrap gap-3">
@@ -21,6 +21,11 @@ const phones = p.images?.filter((i) => i.phone) ?? [];
     </div>
   </header>
 
+  {!desktop[0] && phones.length > 0 && (
+    <div class="mt-14 flex items-end justify-center gap-4 overflow-hidden rounded-[2rem] bg-[radial-gradient(circle_at_30%_20%,#3b4cc0,#18205c_70%)] px-6 pt-12 sm:gap-8">
+      {phones.map((im, k) => <img src={url(im.src)} alt={im.alt} width="440" height="611" class={`w-[30%] max-w-[17rem] rounded-t-[1.6rem] border-4 border-b-0 border-[#0d1235] shadow-2xl ${k === 1 ? '' : 'translate-y-8'}`} />)}
+    </div>
+  )}
   {desktop[0] && (
     <figure class="mt-14 overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_30px_60px_-30px_rgba(20,33,28,.45)]">
       <img src={url(desktop[0].src)} alt={desktop[0].alt} width="1600" height="1000" class="w-full" />
@@ -30,6 +35,23 @@ const phones = p.images?.filter((i) => i.phone) ?? [];
   <div class="mt-14 grid gap-12 lg:grid-cols-[2fr_1fr]">
     <div class="space-y-10">
       {c.problem && <section><p class="text-lg leading-relaxed">{c.problem}</p></section>}
+      {c.approach && <section><h2 class="font-display text-2xl font-bold">{t.approach}</h2><p class="mt-3 text-lg leading-relaxed">{c.approach}</p></section>}
+      {c.modules && (
+        <section>
+          <h2 class="font-display text-2xl font-bold">{t.modules}</h2>
+          <div class="mt-5 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+            {c.modules.map((m) => (
+              <div class="border-t-2 border-line pt-4">
+                <div class="flex items-center justify-between gap-3">
+                  <h3 class="font-display text-lg font-bold">{m.name}</h3>
+                  <span class={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold ${m.status === 'built' ? 'bg-tea-soft text-tea' : 'bg-turmeric/25 text-ink'}`}>{m.status === 'built' ? t.built : t.progress}</span>
+                </div>
+                <p class="mt-2 leading-relaxed text-muted">{m.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
       {c.features && (
         <section>
           <h2 class="font-display text-2xl font-bold">{t.features}</h2>
@@ -46,12 +68,34 @@ const phones = p.images?.filter((i) => i.phone) ?? [];
     </aside>
   </div>
 
+  {p.flow && (
+    <section class="mt-16">
+      <h2 class="font-display text-2xl font-bold">{t.architecture}</h2>
+      <ol class="mt-6 grid gap-4 md:grid-cols-4">
+        {p.flow.map((f, i) => (
+          <li class="relative rounded-2xl border border-line bg-surface p-5">
+            <p class="text-xs font-semibold text-muted">{i + 1} · {f.where}</p>
+            <p class="mt-1 font-display text-lg font-bold">{f.name}</p>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{f.text}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )}
+  {c.numbers && (
+    <section class="mt-16">
+      <h2 class="font-display text-2xl font-bold">{t.numbers}</h2>
+      <dl class="mt-6 grid grid-cols-2 gap-6 md:grid-cols-4">
+        {c.numbers.map(([n, label]) => <div><dt class="sr-only">{label}</dt><dd class="font-display text-5xl font-extrabold text-tea">{n}</dd><dd class="mt-1 text-muted">{label}</dd></div>)}
+      </dl>
+    </section>
+  )}
   {desktop.length > 1 && (
     <div class="mt-16 grid gap-6 md:grid-cols-2">
       {desktop.slice(1).map((im) => <img src={url(im.src)} alt={im.alt} loading="lazy" width="1600" height="1000" class="w-full rounded-2xl border border-line" />)}
     </div>
   )}
-  {phones.length > 0 && (
+  {desktop[0] && phones.length > 0 && (
     <div class="mt-10 flex flex-wrap justify-center gap-8">
       {phones.map((im) => <img src={url(im.src)} alt={im.alt} loading="lazy" width="700" height="1515" class="w-full max-w-[17rem] rounded-[1.6rem] border-4 border-ink" />)}
     </div>

@@ -27,7 +27,7 @@ export const ui = {
     seeWork: 'See my work',
     downloadCv: 'Download CV',
     workTitle: 'Recent work',
-    workIntro: 'Two products I designed, built and shipped end to end in 2026.',
+    workIntro: 'My final-year research and two products I designed, built and shipped end to end in 2026.',
     readCase: 'Read the case study',
     liveSite: 'Open live site',
     code: 'Source code',
@@ -52,6 +52,12 @@ export const ui = {
     footer: 'Built with Astro and Tailwind CSS. Hosted on GitHub Pages.',
     theme: 'Toggle dark mode',
     viewCert: 'View certificate',
+    approach: 'The approach',
+    modules: 'What it does',
+    built: 'Built',
+    progress: 'In progress',
+    architecture: 'How it is built',
+    numbers: 'By the numbers',
   },
   si: {
     langName: 'සිංහල',
@@ -66,7 +72,7 @@ export const ui = {
     seeWork: 'මගේ වැඩ බලන්න',
     downloadCv: 'CV බාගන්න',
     workTitle: 'මෑත වැඩ',
-    workIntro: '2026 දී මුල සිට අග දක්වා design කර, හදලා, publish කළ නිෂ්පාදන දෙකක්.',
+    workIntro: 'මගේ අවසන් වසරේ පර්යේෂණය සහ 2026 දී මුල සිට අග දක්වා හදලා publish කළ නිෂ්පාදන දෙකක්.',
     readCase: 'විස්තර කියවන්න',
     liveSite: 'Live site එක',
     code: 'Source code',
@@ -91,11 +97,22 @@ export const ui = {
     footer: 'Astro සහ Tailwind CSS වලින් හදලා, GitHub Pages එකේ host කර ඇත.',
     theme: 'Dark mode මාරු කරන්න',
     viewCert: 'සහතිකය බලන්න',
+    approach: 'විසඳුම',
+    modules: 'කරන දේ',
+    built: 'ඉවරයි',
+    progress: 'කරගෙන යනවා',
+    architecture: 'හදලා තියෙන හැටි',
+    numbers: 'අංක වලින්',
   },
 } as const;
 
 export type Category = 'web' | 'ai' | 'hw' | 'study';
 
+export interface Module { name: string; status: 'built' | 'progress'; text: string }
+export interface Detail {
+  summary: string; problem?: string; approach?: string; features?: string[]; role?: string; status?: string;
+  badge?: string; modules?: Module[]; numbers?: [string, string][];
+}
 export interface Project {
   slug: string;
   name: string;
@@ -106,13 +123,102 @@ export interface Project {
   repo?: string;
   live?: string;
   images?: { src: string; alt: string; phone?: boolean }[];
-  en: { summary: string; problem?: string; features?: string[]; role?: string; status?: string };
-  si: { summary: string; problem?: string; features?: string[]; role?: string; status?: string };
+  flow?: { where: string; name: string; text: string }[];
+  en: Detail;
+  si: Partial<Detail> & { summary: string };
 }
 
 const gh = (r: string) => `https://github.com/malingaprabhath7-maker/${r}`;
 
 export const projects: Project[] = [
+  {
+    slug: 'smartgem',
+    name: 'SmartGem',
+    year: '2026',
+    category: 'hw',
+    featured: true,
+    stack: ['Flutter', 'Dart', 'SQLCipher', 'Node.js', 'Express', 'MySQL 8', 'JWT', 'TensorFlow Lite', 'MobileNetV2'],
+    images: [
+      { src: 'images/smartgem-login.webp', alt: 'SmartGem login screen with a sapphire gradient and gold gem logo', phone: true },
+      { src: 'images/smartgem-dashboard.webp', alt: 'SmartGem home dashboard with six feature tiles', phone: true },
+      { src: 'images/smartgem-library.webp', alt: 'Gem Library showing sapphires with prices per carat', phone: true },
+    ],
+    flow: [
+      { where: 'Phone', name: 'Flutter app', text: 'SQLCipher database, key in the Android Keystore, Sinhala and English UI' },
+      { where: 'Phone', name: 'Sync Manager', text: 'Uploads a snapshot when data changes, on app start and every 5 minutes' },
+      { where: 'Server', name: 'Node.js + Express', text: 'bcrypt passwords, JWT login, one transaction per sync' },
+      { where: 'Server', name: 'MySQL 8', text: '9 tables with foreign keys, daily licence-reminder emails at 9:00' },
+    ],
+    en: {
+      badge: 'Final-year research project',
+      summary: 'An offline-first Sinhala and English mobile app that helps small-scale gem miners in Uva Province value their stones, share profits fairly with partners and keep their mining licences valid.',
+      problem: 'Small-scale miners often sell rough stones without knowing what they are worth, keep partner profit-sharing on paper, and miss licence renewal dates set by the National Gem and Jewellery Authority (NGJA). Many mine sites have weak mobile coverage, and many users are more comfortable reading Sinhala. Study area: Passara, Lunugala, Badalkumbura and Okkampitiya.',
+      approach: 'SmartGem keeps everything on the phone first, in an encrypted database, so it works deep inside a mine with no signal. When a connection appears, a Sync Manager quietly backs the data up to a central server. Every screen switches between Sinhala and English with one tap.',
+      modules: [
+        { name: 'Partner share management', status: 'built', text: 'Records mining costs and gem sales, then works out each partner’s share of the net profit. Unpaid overheads carry forward to the next period instead of being lost.' },
+        { name: 'NGJA compliance', status: 'built', text: 'Tracks mining and dealing licences with expiry badges, phone notifications 14 days before expiry, Sinhala and English email reminders and a PDF compliance report.' },
+        { name: 'Licence guide', status: 'built', text: 'Step-by-step guidance for mining and dealer licences, with a dealer fee calculator checked against all 20 official NGJA fee totals.' },
+        { name: 'Gem library', status: 'built', text: '54 gem types with bilingual descriptions, identification and care tips, indicative LKR prices and a carat calculator that warns how much weight a rough stone loses when cut.' },
+        { name: 'Secure accounts and cloud sync', status: 'built', text: 'AES-256 encrypted local database with its key in the Android Keystore, password reset by email code, and background sync to MySQL over a JWT-protected API.' },
+        { name: 'AI gem valuation', status: 'progress', text: 'On-device gem identification with a MobileNetV2 model converted to TensorFlow Lite, trained on field photos labelled by a gemmologist. Price comes from the type, the weight and the price database.' },
+      ],
+      numbers: [['54', 'gem types in the library'], ['114', 'field gem photos collected'], ['4', 'study areas in Uva Province'], ['66', 'sources in the literature review']],
+      role: 'Sole researcher and developer: requirements from miners and NGJA officers, system and database design, the Flutter app and Node.js server, security, testing and the thesis. Supervised by Mr. Waruna Gamage, Department of Information Technology, University of Ruhuna.',
+      status: 'In progress — five modules built; the AI valuation model is being trained.',
+    },
+    si: {
+      badge: 'අවසන් වසරේ පර්යේෂණ project එක',
+      summary: 'ඌව පළාතේ කුඩා පරිමාණ මැණික් කර්මාන්තකරුවන්ට ගල්වල වටිනාකම දැනගන්න, හවුල්කරුවන් අතර ලාභය සාධාරණව බෙදාගන්න සහ බලපත්‍ර වලංගුව තබාගන්න උදව් කරන, offline වැඩ කරන සිංහල/ඉංග්‍රීසි mobile app එකක්.',
+      problem: 'කුඩා පරිමාණ පතල්කරුවන් බොහෝ විට වටිනාකම නොදැන අමු ගල් විකුණනවා, හවුල් ලාභ බෙදීම කඩදාසියේ තියාගන්නවා, NGJA බලපත්‍ර අලුත් කිරීමේ දින මඟ හරිනවා. පතල් බොහොමයක දුරකථන සංඥා දුර්වලයි. අධ්‍යයන ප්‍රදේශය: පස්සර, ලුණුගල, බඩල්කුඹුර සහ ඔක්කම්පිටිය.',
+      approach: 'SmartGem හැම දෙයක්ම මුලින්ම phone එකේ සංකේතිත database එකක ගබඩා කරනවා — ඒ නිසා සංඥා නැති පතලක් ඇතුළෙත් වැඩ කරනවා. සම්බන්ධතාවක් ලැබුණාම Sync Manager එක දත්ත server එකට backup කරනවා. හැම තිරයක්ම එක tap එකකින් සිංහල/ඉංග්‍රීසි මාරු වෙනවා.',
+      modules: [
+        { name: 'හවුල්කරු ලාභ බෙදීම', status: 'built', text: 'පතල් වියදම් සහ මැණික් විකුණුම් සටහන් කර, එක් එක් හවුල්කරුගේ ශුද්ධ ලාභ කොටස ගණනය කරනවා.' },
+        { name: 'NGJA අනුකූලතාව', status: 'built', text: 'බලපත්‍ර කල් ඉකුත් වීමට දින 14කට පෙර දැනුම්දීම්, සිංහල/ඉංග්‍රීසි email සිහිකැඳවීම් සහ PDF වාර්තාව.' },
+        { name: 'බලපත්‍ර මාර්ගෝපදේශය', status: 'built', text: 'පතල් සහ වෙළෙන්දා බලපත්‍ර සඳහා පියවරෙන් පියවර උපදෙස් සහ නිල NGJA ගාස්තු 20ට එරෙහිව පරීක්ෂා කළ ගාස්තු ගණකය.' },
+        { name: 'මැණික් පුස්තකාලය', status: 'built', text: 'ද්විභාෂා විස්තර, හඳුනාගැනීමේ ඉඟි සහ රුපියල් මිල සහිත මැණික් වර්ග 54ක් සහ කැරට් ගණකය.' },
+        { name: 'ආරක්ෂිත ගිණුම් සහ cloud sync', status: 'built', text: 'AES-256 සංකේතිත දේශීය database, email code මගින් මුරපදය යළි සැකසීම සහ JWT ආරක්ෂිත API හරහා ස්වයංක්‍රීය sync.' },
+        { name: 'AI මැණික් තක්සේරුව', status: 'progress', text: 'MobileNetV2 → TensorFlow Lite model එකකින් phone එකේම මැණික් වර්ගය හඳුනාගැනීම. දැනට පුහුණු කරමින්.' },
+      ],
+      numbers: [['54', 'මැණික් වර්ග'], ['114', 'ක්ෂේත්‍ර ඡායාරූප'], ['4', 'අධ්‍යයන ප්‍රදේශ'], ['66', 'සාහිත්‍ය මූලාශ්‍ර']],
+      role: 'තනි පර්යේෂකයා සහ සංවර්ධකයා: අවශ්‍යතා එකතු කිරීම, design, Flutter app එක, Node.js server එක, ආරක්ෂාව, testing සහ නිබන්ධනය. අධීක්ෂණය: වරුණ ගමගේ මහතා, තොරතුරු තාක්ෂණ අංශය, රුහුණ විශ්වවිද්‍යාලය.',
+      status: 'කරගෙන යනවා — modules 5ක් ඉවරයි; AI model එක පුහුණු කරමින්.',
+    },
+  },
+  {
+    slug: 'spda',
+    name: 'SPDA Information Management System',
+    year: '2026',
+    category: 'web',
+    stack: ['React 19', 'Vite', 'Tailwind CSS 4', 'Recharts', 'PHP', 'PostgreSQL'],
+    images: [{ src: 'images/spda-welcome.webp', alt: 'Welcome page of the Southern Province Development Authority information management system' }],
+    en: {
+      badge: 'Internship · Southern Province Development Authority',
+      summary: 'A bilingual information management system for the Southern Province Development Authority (Department of Finance) to register entrepreneurs and track their applications across districts.',
+      features: [
+        'Entrepreneur records with district, DS and GN division, business field and NIC checks',
+        'Dashboard with entrepreneurs by district and business sector charts',
+        'Application status tracking with filters, sorting, bulk actions and a recycle bin',
+        'Excel import, Excel and PDF export, and document uploads per record',
+        'Secure login with account lockout, password reset by email, activity log and database backups',
+        'Full Sinhala and English interface',
+      ],
+      role: 'Built during my internship: React front end, PHP API, PostgreSQL schema and the bilingual interface.',
+      status: 'In use internally; code is private to the organisation.',
+    },
+    si: {
+      badge: 'Internship · දකුණු පළාත් සංවර්ධන අධිකාරිය',
+      summary: 'දකුණු පළාත් සංවර්ධන අධිකාරිය (මුදල් අංශය) සඳහා ව්‍යවසායකයන් ලියාපදිංචි කර, දිස්ත්‍රික්ක අනුව අයදුම්පත් හඹා යන ද්විභාෂා තොරතුරු කළමනාකරණ පද්ධතියක්.',
+      features: [
+        'දිස්ත්‍රික්කය, ප්‍රාදේශීය ලේකම් සහ ග්‍රාම නිලධාරී කොට්ඨාස, ව්‍යාපාර ක්ෂේත්‍රය සහ NIC පරීක්ෂාව සහිත ව්‍යවසායක වාර්තා',
+        'දිස්ත්‍රික්ක සහ ව්‍යාපාර අංශ අනුව charts සහිත dashboard',
+        'Filters, bulk actions සහ recycle bin සහිත අයදුම්පත් තත්ත්ව හඹා යාම',
+        'Excel import, Excel/PDF export සහ ලේඛන upload',
+        'Account lockout, email මගින් මුරපදය යළි සැකසීම, activity log සහ backups',
+      ],
+      role: 'Internship කාලයේ හදපු: React front end, PHP API, PostgreSQL schema සහ ද්විභාෂා UI.',
+      status: 'ආයතනය තුළ භාවිතා වේ; code එක ආයතනයට පෞද්ගලිකයි.',
+    },
+  },
   {
     slug: 'rakawarana',
     name: 'Rakawarana · රැකවරණ',
@@ -355,6 +461,8 @@ export const journey = {
     { when: 'Several years', what: 'Insurance Consultant', where: 'Arpico Insurance · advising clients, finding what they need, meeting sales targets' },
     { when: '2023', what: 'BA (Hons) in ICT begins', where: 'University of Ruhuna · OOP, web, databases, software engineering, mobile, IoT' },
     { when: '2026', what: 'Web Design & Cyber Security programs', where: 'American Corner Matara, supported by the U.S. Embassy in Sri Lanka' },
+    { when: '2026', what: 'Software development intern', where: 'Southern Province Development Authority · built its bilingual information management system' },
+    { when: '2026', what: 'Final-year research: SmartGem', where: 'Offline-first app for gem miners in Uva Province · supervised by Mr. Waruna Gamage' },
     { when: '2026', what: 'Shipped Viyadam Pota and Rakawarana', where: 'Two bilingual products, live on GitHub' },
     { when: '2027', what: 'Graduation (expected)', where: 'University of Ruhuna' },
   ],
@@ -364,6 +472,8 @@ export const journey = {
     { when: 'වසර කිහිපයක්', what: 'රක්ෂණ උපදේශක', where: 'Arpico Insurance · ගනුදෙනුකරුවන්ට උපදෙස්, අවශ්‍යතා හඳුනාගැනීම, විකුණුම් ඉලක්ක' },
     { when: '2023', what: 'ICT ගෞරව උපාධිය ආරම්භය', where: 'රුහුණ විශ්වවිද්‍යාලය' },
     { when: '2026', what: 'Web Design සහ Cyber Security පාඨමාලා', where: 'American Corner මාතර, එක්සත් ජනපද තානාපති කාර්යාලයේ සහාය ඇතිව' },
+    { when: '2026', what: 'මෘදුකාංග සංවර්ධන intern', where: 'දකුණු පළාත් සංවර්ධන අධිකාරිය · ද්විභාෂා තොරතුරු කළමනාකරණ පද්ධතිය' },
+    { when: '2026', what: 'අවසන් වසරේ පර්යේෂණය: SmartGem', where: 'ඌව පළාතේ මැණික් කර්මාන්තකරුවන් සඳහා offline app එකක්' },
     { when: '2026', what: 'වියදම් පොත සහ රැකවරණ publish කළා', where: 'GitHub මත live ද්විභාෂා නිෂ්පාදන දෙකක්' },
     { when: '2027', what: 'උපාධිය (අපේක්ෂිත)', where: 'රුහුණ විශ්වවිද්‍යාලය' },
   ],
@@ -372,17 +482,17 @@ export const journey = {
 export const skills = {
   en: [
     { group: 'Languages', items: ['Java', 'PHP', 'JavaScript', 'Python', 'C++', 'C#'] },
-    { group: 'Web', items: ['Laravel', 'Astro', 'Tailwind CSS', 'Alpine.js', 'HTML & CSS', 'Firebase', 'PWA'] },
-    { group: 'Mobile & IoT', items: ['Android Studio', 'Java (Android SDK)', 'Sensor integration'] },
-    { group: 'Data & AI', items: ['MySQL', 'SQLite', 'Firestore', 'NLTK', 'scikit-learn'] },
+    { group: 'Web', items: ['Laravel', 'React', 'Node.js', 'Astro', 'Tailwind CSS', 'Alpine.js', 'HTML & CSS', 'Firebase', 'PWA'] },
+    { group: 'Mobile & IoT', items: ['Flutter', 'Dart', 'Android Studio', 'Java (Android SDK)', 'Sensor integration'] },
+    { group: 'Data & AI', items: ['MySQL', 'PostgreSQL', 'SQLite', 'Firestore', 'TensorFlow Lite', 'NLTK', 'scikit-learn'] },
     { group: 'Engineering', items: ['Git & GitHub', 'GitHub Actions', 'PHPUnit', 'Docker', 'OOP', 'Secure coding'] },
     { group: 'People', items: ['Client communication', 'Requirements gathering', 'Sinhala & English'] },
   ],
   si: [
     { group: 'භාෂා', items: ['Java', 'PHP', 'JavaScript', 'Python', 'C++', 'C#'] },
-    { group: 'Web', items: ['Laravel', 'Astro', 'Tailwind CSS', 'Alpine.js', 'HTML සහ CSS', 'Firebase', 'PWA'] },
-    { group: 'Mobile සහ IoT', items: ['Android Studio', 'Java (Android SDK)', 'Sensor integration'] },
-    { group: 'දත්ත සහ AI', items: ['MySQL', 'SQLite', 'Firestore', 'NLTK', 'scikit-learn'] },
+    { group: 'Web', items: ['Laravel', 'React', 'Node.js', 'Astro', 'Tailwind CSS', 'Alpine.js', 'HTML සහ CSS', 'Firebase', 'PWA'] },
+    { group: 'Mobile සහ IoT', items: ['Flutter', 'Dart', 'Android Studio', 'Java (Android SDK)', 'Sensor integration'] },
+    { group: 'දත්ත සහ AI', items: ['MySQL', 'PostgreSQL', 'SQLite', 'Firestore', 'TensorFlow Lite', 'NLTK', 'scikit-learn'] },
     { group: 'ඉංජිනේරු', items: ['Git සහ GitHub', 'GitHub Actions', 'PHPUnit', 'Docker', 'OOP', 'ආරක්ෂිත coding'] },
     { group: 'මිනිසුන් සමඟ', items: ['ගනුදෙනුකරු සන්නිවේදනය', 'අවශ්‍යතා එකතු කිරීම', 'සිංහල සහ ඉංග්‍රීසි'] },
   ],

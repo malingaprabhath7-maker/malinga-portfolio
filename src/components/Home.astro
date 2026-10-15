@@ -52,6 +52,11 @@ const waLink = 'https://wa.me/' + profile.phone.replace(/\D/g, '');
         const phone = p.images?.find((im) => im.phone);
         return (
           <article class={`grid items-center gap-10 lg:grid-cols-[1.25fr_1fr] ${i % 2 ? 'lg:[&>*:first-child]:order-2' : ''}`}>
+            {!shot && p.images ? (
+            <a href={page(lang, `projects/${p.slug}`)} class="flex items-end justify-center gap-4 overflow-hidden rounded-[2rem] bg-[radial-gradient(circle_at_30%_20%,#3b4cc0,#18205c_70%)] px-6 pt-10 sm:gap-6" aria-label={p.name}>
+              {p.images.map((im, k) => <img src={url(im.src)} alt={im.alt} loading="lazy" width="440" height="611" class={`w-[30%] rounded-t-[1.4rem] border-4 border-b-0 border-[#0d1235] shadow-2xl ${k === 1 ? 'mb-0' : 'mb-[-0px] translate-y-6'}`} />)}
+            </a>
+            ) : (
             <a href={page(lang, `projects/${p.slug}`)} class="relative block pb-10 pr-10" aria-label={p.name}>
               <div class="overflow-hidden rounded-2xl border border-line bg-paper shadow-[0_30px_60px_-30px_rgba(20,33,28,.45)]">
                 <div class="flex items-center gap-1.5 border-b border-line px-4 py-2.5" aria-hidden="true">
@@ -61,8 +66,9 @@ const waLink = 'https://wa.me/' + profile.phone.replace(/\D/g, '');
               </div>
               {phone && <img src={url(phone.src)} alt={phone.alt} loading="lazy" width="700" height="1515" class="absolute bottom-0 right-0 w-[26%] rounded-[1.4rem] border-4 border-ink shadow-xl" />}
             </a>
+            )}
             <div>
-              <p class="text-sm font-semibold text-tea">{p.year}</p>
+              <p class="text-sm font-semibold text-tea">{p[lang].badge ?? p.en.badge ? `${p[lang].badge ?? p.en.badge} · ${p.year}` : p.year}</p>
               <h3 class="mt-1 font-display text-3xl font-bold tracking-tight">{p.name}</h3>
               <p class="mt-4 text-lg leading-relaxed">{p[lang].summary}</p>
               {p[lang].problem && <p class="mt-3 leading-relaxed text-muted">{p[lang].problem}</p>}
@@ -106,12 +112,13 @@ const waLink = 'https://wa.me/' + profile.phone.replace(/\D/g, '');
             {p.en.features || p.images ? <a class="hover:text-tea" href={page(lang, `projects/${p.slug}`)}>{p.name}</a> : p.name}
           </h3>
           <p class="mt-1 max-w-2xl leading-relaxed text-muted">{p[lang].summary}</p>
+          {(p[lang].badge ?? p.en.badge) && <p class="mt-1 text-sm font-semibold text-tea">{p[lang].badge ?? p.en.badge}</p>}
           {p[lang].status && <p class="mt-1 text-sm font-medium text-indigo">{p[lang].status}</p>}
           {p.stack.length > 0 && <ul class="mt-3 flex flex-wrap gap-1.5">{p.stack.slice(0, 5).map((s) => <li class="chip">{s}</li>)}</ul>}
         </div>
         <div class="flex items-start gap-4 text-sm font-medium sm:justify-end">
           {p.live && <a class="link" href={p.live}>{t.liveSite}</a>}
-          {p.repo ? <a class="link" href={p.repo}>GitHub</a> : <span class="text-muted">{t.noLink}</span>}
+          {p.repo ? <a class="link" href={p.repo}>GitHub</a> : p.category === 'study' ? <span class="text-muted">{t.noLink}</span> : null}
         </div>
       </li>
     ))}
