@@ -26,11 +26,8 @@ await shot('calculator', 'http://127.0.0.1:5000/', async (p) => {
     if (await btn.count()) { await btn.first().click(); await wait(200); }
   }
 });
-await shot('translator', 'http://127.0.0.1:7860/', async (p) => {
-  // the free translation service rate-limits CI machines, so show the tool ready to use
-  await p.locator('textarea').first().fill('Good morning! How can I help you today?');
-  await wait(500);
-});
+// the free translation service rate-limits CI machines, so photograph the tool in its starting state
+await shot('translator', 'http://127.0.0.1:7860/');
 await shot('chatbot', 'http://127.0.0.1:8501/', async (p) => {
   await wait(4000);
   const input = p.locator('textarea, input[type="text"]').last();
