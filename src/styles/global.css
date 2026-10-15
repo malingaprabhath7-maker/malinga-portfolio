@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Bricolage Grotesque", "Noto Sans Sinhala", system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", "Noto Sans Sinhala", system-ui, sans-serif;
+  --font-sinhala: "Noto Serif Sinhala", serif;
+
+  --color-paper: #f2f4ef;
+  --color-surface: #ffffff;
+  --color-ink: #14211c;
+  --color-muted: #55645d;
+  --color-line: #d5dbd3;
+  --color-tea: #1e6a4c;
+  --color-tea-soft: #dcebe2;
+  --color-indigo: #34408f;
+  --color-turmeric: #e2a11b;
+}
+
+.dark {
+  --color-paper: #0f1714;
+  --color-surface: #16211c;
+  --color-ink: #e8eee9;
+  --color-muted: #9aaba2;
+  --color-line: #27352e;
+  --color-tea: #6fc49b;
+  --color-tea-soft: #1c3329;
+  --color-indigo: #9aa6f0;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body { background: var(--color-paper); color: var(--color-ink); }
+:focus-visible { outline: 2px solid var(--color-indigo); outline-offset: 3px; border-radius: 4px; }
+::selection { background: var(--color-turmeric); color: #14211c; }
+
+.link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--color-line); }
+.link:hover { text-decoration-color: currentColor; }
+
+.btn { display: inline-flex; align-items: center; gap: .5rem; border-radius: .75rem; padding: .7rem 1.15rem; font-weight: 600; transition: background-color .15s, color .15s, border-color .15s; }
+.btn-ink { background: var(--color-ink); color: var(--color-paper); }
+.btn-ink:hover { background: var(--color-tea); }
+.btn-line { border: 1px solid var(--color-line); background: var(--color-surface); }
+.btn-line:hover { border-color: var(--color-ink); }
+
+.chip { display: inline-block; border: 1px solid var(--color-line); border-radius: 999px; padding: .12rem .6rem; font-size: .78rem; color: var(--color-muted); white-space: nowrap; }
+
+/* the one orchestrated moment: hero name settles in on load */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-line { opacity: 0; transform: translateY(14px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+  .hero-line:nth-child(2) { animation-delay: .12s; }
+  .hero-line:nth-child(3) { animation-delay: .24s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+}

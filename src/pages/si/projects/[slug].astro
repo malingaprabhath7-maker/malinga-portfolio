@@ -1,0 +1,13 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ProjectPage from '../../../components/ProjectPage.astro';
+import { projects } from '../../../data/site';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+const { project } = Astro.props;
+---
+<Layout lang="si" title={project.name} description={project.si.summary} path={`projects/${project.slug}`} image={project.images?.[0]?.src}>
+  <ProjectPage lang="si" project={project} />
+</Layout>
