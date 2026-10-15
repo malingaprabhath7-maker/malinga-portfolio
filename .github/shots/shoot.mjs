@@ -21,12 +21,15 @@ await shot('travel-gallery', 'http://127.0.0.1:8101/gallery.html');
 await shot('stress-login', 'http://127.0.0.1:8102/index.html');
 await shot('echomood-home', 'http://127.0.0.1:8103/index.html');
 await shot('calculator', 'http://127.0.0.1:5000/', async (p) => {
-  for (const k of ['1', '2', '5', '*', '8']) { await p.keyboard.press(k); await wait(150); }
+  for (const k of ['1', '2', '5', '×', '8', '=']) {
+    const btn = p.getByRole('button', { name: k, exact: true });
+    if (await btn.count()) { await btn.first().click(); await wait(200); }
+  }
 });
 await shot('translator', 'http://127.0.0.1:7860/', async (p) => {
-  const box = p.locator('textarea').first();
-  await box.fill('Good morning! How can I help you today?');
-  await wait(6000);
+  // the free translation service rate-limits CI machines, so show the tool ready to use
+  await p.locator('textarea').first().fill('Good morning! How can I help you today?');
+  await wait(500);
 });
 await shot('chatbot', 'http://127.0.0.1:8501/', async (p) => {
   await wait(4000);
