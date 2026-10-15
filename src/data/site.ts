@@ -307,19 +307,26 @@ export const projects: Project[] = [
   },
   {
     slug: 'stress-management',
-    name: 'Stress Management System',
+    name: 'Calm Desk — Stress Management',
     year: '2026',
     category: 'web',
-    stack: ['HTML5', 'CSS3', 'JavaScript', 'localStorage'],
+    stack: ['Astro 5', 'Tailwind CSS 4', 'TypeScript', 'PWA', 'GitHub Pages'],
     repo: gh('Stress-Management-'),
-    images: [{ src: 'images/stress-login.webp', alt: 'Stress Management System login screen' }],
+    live: 'https://malingaprabhath7-maker.github.io/Stress-Management-/',
+    images: [
+      { src: 'images/calm-today.webp', alt: 'Calm Desk today page with a breathing orb and daily check-in' },
+      { src: 'images/calm-check.webp', alt: 'PSS-10 stress check result with level, tips and a recommended exercise' },
+      { src: 'images/calm-relief.webp', alt: 'Relief kit with box breathing, 4-7-8 breathing, grounding and bubble pop' },
+      { src: 'images/calm-log.webp', alt: 'My log page with a 30-day stress chart and relief sessions' },
+      { src: 'images/calm-phone-si.webp', alt: 'Calm Desk on a phone in Sinhala', phone: true },
+    ],
     en: {
-      summary: 'A client-side stress toolkit for IT professionals: a 10-question assessment, relief mini-games and a daily check-in log with trend charts.',
-      features: ['Login and registration stored in the browser', 'Stress score with personalised suggestions', 'Breathing exercise, Bubble Pop and Mind Sweep games', 'Daily check-ins with streaks, charts and CSV export'],
+      summary: 'A bilingual stress-care web app for people who work at a screen: the standard PSS-10 stress check, short relief exercises with before/after ratings, and a private mood log. Works offline and installs like an app.',
+      features: ['PSS-10 questionnaire with scored levels and tips for your stress triggers', 'Box and 4-7-8 breathing with background sounds, 5-4-3-2-1 grounding, Bubble pop, Mind sweep and a Pomodoro timer', 'Before/after stress ratings that show which exercises help you', 'Daily check-ins, 30-day chart, CSV export and JSON backup', 'Sri Lankan helplines, offline PWA, dark mode, English and Sinhala', 'No accounts: all data stays on the device'],
     },
     si: {
-      summary: 'IT වෘත්තිකයන් සඳහා browser එක තුළම වැඩ කරන ආතතිය අඩු කිරීමේ මෙවලමක්: ප්‍රශ්න 10ක ඇගයීමක්, ක්‍රීඩා සහ දෛනික සටහන්.',
-      features: ['Browser එකේ ගබඩා වන login සහ ලියාපදිංචිය', 'පුද්ගලික යෝජනා සහිත ආතති ලකුණු', 'හුස්ම ගැනීමේ ව්‍යායාම සහ කුඩා ක්‍රීඩා', 'Charts සහ CSV export සහිත දෛනික සටහන්'],
+      summary: 'තිරයක් ඉදිරියේ වැඩ කරන අය සඳහා ද්විභාෂා ආතති සත්කාර web app එකක්: සම්මත PSS-10 ආතති පරීක්ෂාව, පෙර/පසු ලකුණු සහිත කෙටි සහන ව්‍යායාම සහ පෞද්ගලික සටහන්. Offline වැඩ කරන අතර app එකක් ලෙස install කළ හැක.',
+      features: ['ලකුණු සහ උපදෙස් සහිත PSS-10 ප්‍රශ්නාවලිය', 'ශබ්ද සහිත හුස්ම ව්‍යායාම, 5-4-3-2-1, බුබුලු ක්‍රීඩාව සහ Pomodoro ටයිමරය', 'උදව් වන ව්‍යායාම පෙන්වන පෙර/පසු ආතති ලකුණු', 'දෛනික සටහන්, දින 30 chart එක, CSV සහ backup', 'ශ්‍රී ලංකා උදව් දුරකථන, offline PWA, සිංහල සහ ඉංග්‍රීසි', 'ගිණුම් නැත: දත්ත උපාංගයේ පමණයි'],
     },
   },
   {
