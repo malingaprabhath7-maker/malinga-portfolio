@@ -33,4 +33,4 @@ npm run build    # output in dist/
 
 ## Earlier version
 
-The first single-file HTML version is kept at the git tag [`v1`](https://github.com/malingaprabhath7-maker/malinga-portfolio/tree/v1).
+The first single-file HTML version is kept on the branch [`v1-original`](https://github.com/malingaprabhath7-maker/malinga-portfolio/tree/v1-original).

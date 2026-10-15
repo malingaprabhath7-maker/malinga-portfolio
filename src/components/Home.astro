@@ -32,9 +32,11 @@ const waLink = 'https://wa.me/' + profile.phone.replace(/\D/g, '');
       <li><a class="link" href={`mailto:${profile.email}`}>{profile.email}</a></li>
     </ul>
   </div>
-  <figure class="relative mx-auto w-full max-w-sm">
-    <div class="absolute -inset-3 -z-10 translate-x-5 translate-y-5 rounded-[2rem] bg-turmeric/80" aria-hidden="true"></div>
-    <img src={url('images/profile.webp')} alt={profile.name} width="690" height="922" class="aspect-[3/4] w-full rounded-[2rem] object-cover object-top" fetchpriority="high" />
+  <figure class="mx-auto w-full max-w-sm">
+    <div class="relative">
+      <div class="absolute inset-0 -z-10 translate-x-4 translate-y-4 rounded-[2rem] bg-turmeric/80" aria-hidden="true"></div>
+      <img src={url('images/profile.webp')} alt={profile.name} width="690" height="922" class="aspect-[3/4] w-full rounded-[2rem] object-cover object-top" fetchpriority="high" />
+    </div>
     <figcaption class="mt-8 text-sm text-muted">{t.role}</figcaption>
   </figure>
 </section>

@@ -46,10 +46,14 @@ const phones = p.images?.filter((i) => i.phone) ?? [];
     </aside>
   </div>
 
-  {(desktop.length > 1 || phones.length > 0) && (
-    <div class="mt-16 grid items-start gap-6 md:grid-cols-[repeat(auto-fit,minmax(16rem,1fr))]">
-      {desktop.slice(1).map((im) => <img src={url(im.src)} alt={im.alt} loading="lazy" width="1600" height="1000" class="w-full rounded-2xl border border-line md:col-span-2" />)}
-      {phones.map((im) => <img src={url(im.src)} alt={im.alt} loading="lazy" width="700" height="1515" class="mx-auto w-full max-w-[16rem] rounded-[1.6rem] border-4 border-ink" />)}
+  {desktop.length > 1 && (
+    <div class="mt-16 grid gap-6 md:grid-cols-2">
+      {desktop.slice(1).map((im) => <img src={url(im.src)} alt={im.alt} loading="lazy" width="1600" height="1000" class="w-full rounded-2xl border border-line" />)}
+    </div>
+  )}
+  {phones.length > 0 && (
+    <div class="mt-10 flex flex-wrap justify-center gap-8">
+      {phones.map((im) => <img src={url(im.src)} alt={im.alt} loading="lazy" width="700" height="1515" class="w-full max-w-[17rem] rounded-[1.6rem] border-4 border-ink" />)}
     </div>
   )}
 </article>
