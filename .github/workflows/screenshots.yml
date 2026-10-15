@@ -1,0 +1,60 @@
+name: screenshots
+
+# Runs my other projects and photographs them for the portfolio; results go to the "screenshots" branch
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/shots/**', '.github/workflows/screenshots.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  shoot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: '22' }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+
+      - name: Get projects
+        run: |
+          mkdir -p p && cd p
+          for r in tourism-static Stress-Management- Echomood-web Python-Calculator AI-Language-Translation-Tool FAQ_Chatbot AgriAid; do
+            git clone -q --depth 1 https://github.com/malingaprabhath7-maker/$r
+          done
+
+      - name: Start projects
+        run: |
+          cd p
+          (cd tourism-static && python -m http.server 8101 >/dev/null 2>&1 &)
+          (cd Stress-Management- && python -m http.server 8102 >/dev/null 2>&1 &)
+          (cd Echomood-web && python -m http.server 8103 >/dev/null 2>&1 &)
+          pip install -q flask deep-translator gradio streamlit nltk scikit-learn numpy pillow google-generativeai
+          (cd Python-Calculator && nohup python -m flask --app app run --port 5000 > ../calc.log 2>&1 &)
+          (cd AI-Language-Translation-Tool && nohup python app.py > ../tr.log 2>&1 &)
+          (cd FAQ_Chatbot && nohup streamlit run app.py --server.headless true --server.port 8501 > ../bot.log 2>&1 &)
+          (cd AgriAid/AgriAid && nohup python -c "import app; app.init_db(); app.app.run(port=5001)" > ../../agri.log 2>&1 &)
+          sleep 25
+
+      - name: Take screenshots
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.49.1
+          npx playwright install --with-deps chromium
+          node .github/shots/shoot.mjs
+
+      - name: Logs
+        if: always()
+        run: tail -n 30 p/*.log || true
+
+      - name: Save to screenshots branch
+        run: |
+          cd shots-out
+          git init -q -b screenshots
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add -A && git commit -qm "Project screenshots"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" screenshots

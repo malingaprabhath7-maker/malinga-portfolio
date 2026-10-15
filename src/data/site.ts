@@ -3,7 +3,7 @@ export type Lang = 'en' | 'si';
 
 export const profile = {
   name: 'Malinga Prabhath',
-  nameSi: 'මලිංග ප්‍රභාත්',
+  nameSi: 'මාලිංග ප්‍රභාත්',
   fullName: 'G.W.A.M.P. Jayathissa',
   email: 'malingaprabhath7@gmail.com',
   phone: '+94 77 423 4030',
@@ -56,7 +56,7 @@ export const ui = {
   si: {
     langName: 'සිංහල',
     otherLang: 'English',
-    title: 'මලිංග ප්‍රභාත් — මෘදුකාංග සංවර්ධක',
+    title: 'මාලිංග ප්‍රභාත් — මෘදුකාංග සංවර්ධක',
     description: 'ශ්‍රී ලංකාවේ සැබෑ වැඩ සඳහා ද්විභාෂා මෘදුකාංග හදන අවසන් වසරේ ICT උපාධි අපේක්ෂකයෙක්.',
     nav: { work: 'වැඩ', all: 'සියලු projects', journey: 'ගමන', skills: 'කුසලතා', certs: 'සහතික', contact: 'සම්බන්ධ වන්න' },
     role: 'මෘදුකාංග සංවර්ධක · නුගේගොඩ',
@@ -268,11 +268,30 @@ export const projects: Project[] = [
     slug: 'agriaid',
     name: 'AgriAid',
     year: '2026',
-    category: 'web',
-    stack: ['Python', 'Flask', 'HTML', 'CSS', 'JavaScript'],
+    category: 'ai',
+    stack: ['Python', 'Flask', 'TensorFlow.js', 'Teachable Machine', 'Gemini API', 'SQLite'],
     repo: gh('AgriAid'),
-    en: { summary: 'A farming assistant prototype with login, a crop dashboard and daily farm checklists.', status: 'Prototype, paused.' },
-    si: { summary: 'Login, බෝග dashboard එකක් සහ දෛනික ගොවි වැඩ ලැයිස්තු සහිත ගොවි සහායක prototype එකක්.', status: 'Prototype එකක්, දැනට නවතා ඇත.' },
+    en: {
+      summary: 'A crop-doctor for Sri Lankan farmers: photograph a sick leaf, get the likely disease and Sinhala treatment advice, then ask follow-up questions to an AI assistant.',
+      features: [
+        'Image model trained with Teachable Machine to recognise diseases in rice, maize, chilli, cowpea and more',
+        'Treatment and prevention advice for each disease, in Sinhala and English',
+        'Gemini-powered chat assistant for follow-up questions',
+        'Farmer accounts with district and preferred language, plus a history of past scans',
+      ],
+      role: 'Built the Flask app, database, model integration and the bilingual interface.',
+      status: 'Working prototype.',
+    },
+    si: {
+      summary: 'ලාංකීය ගොවීන් සඳහා බෝග වෛද්‍යවරයෙක්: රෝගී කොළයක ඡායාරූපයක් ගත් විට රෝගය සහ සිංහලෙන් ප්‍රතිකාර උපදෙස් ලැබේ; AI සහායකයාගෙන් තවත් ප්‍රශ්න අහන්නත් පුළුවන්.',
+      features: [
+        'වී, බඩඉරිඟු, මිරිස්, කව්පි ඇතුළු බෝගවල රෝග හඳුනාගන්නා Teachable Machine image model එකක්',
+        'හැම රෝගයකටම සිංහල සහ ඉංග්‍රීසි ප්‍රතිකාර සහ වැළැක්වීමේ උපදෙස්',
+        'Gemini මගින් වැඩ කරන chat සහායකයා',
+        'දිස්ත්‍රික්කය සහ භාෂාව සහිත ගොවි ගිණුම් සහ පෙර scans ඉතිහාසය',
+      ],
+      status: 'වැඩ කරන prototype එකක්.',
+    },
   },
   {
     slug: 'echomood',
