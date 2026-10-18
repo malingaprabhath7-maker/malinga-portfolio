@@ -11,6 +11,8 @@ export const profile = {
   linkedin: 'https://linkedin.com/in/malinga-prabhath-0a85b7285',
   github: 'https://github.com/malingaprabhath7-maker',
   cv: 'files/Malinga_Prabhath_CV.pdf',
+  // the small round photo in the header; replace public/images/avatar.webp to change it
+  avatar: 'images/avatar.webp',
 };
 
 export const ui = {
