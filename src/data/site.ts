@@ -226,7 +226,7 @@ export const projects: Project[] = [
     category: 'web',
     featured: true,
     stack: ['Laravel 13', 'PHP 8.3', 'Tailwind CSS 4', 'Alpine.js', 'Chart.js', 'PHPUnit', 'GitHub Actions', 'Docker'],
-    repo: gh('Rakawaranaya'),
+    // source is private; the repo link returns once the public showcase repo exists
     images: [
       { src: 'images/rakawarana-dashboard.webp', alt: 'Rakawarana dashboard with monthly target and premiums due' },
       { src: 'images/rakawarana-today.webp', alt: 'Today list with overdue premiums, renewals and birthdays' },
