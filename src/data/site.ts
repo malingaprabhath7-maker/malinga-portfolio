@@ -449,10 +449,23 @@ export const projects: Project[] = [
     name: 'Ceyloncraft',
     year: '2026',
     category: 'web',
-    stack: [],
+    stack: ['Astro 5', 'Tailwind CSS 4', 'TypeScript', 'GitHub Pages'],
     repo: gh('Ceyloncraft'),
-    en: { summary: 'A marketplace idea for traditional Sri Lankan crafts — batik, masks, pottery and brassware — sold directly by rural artisans.', status: 'Concept, not yet built.' },
-    si: { summary: 'ග්‍රාමීය ශිල්පීන් සෘජුවම විකුණන බතික්, වෙස් මුහුණු, මැටි සහ පිත්තල භාණ්ඩ සඳහා marketplace අදහසක්.', status: 'අදහසක් පමණයි, තවම හදලා නැහැ.' },
+    live: 'https://malingaprabhath7-maker.github.io/Ceyloncraft/',
+    images: [
+      { src: 'images/ceyloncraft-home.webp', alt: 'Ceyloncraft home page with handmade craft categories' },
+      { src: 'images/ceyloncraft-shop.webp', alt: 'Shop page with craft, village and price filters' },
+      { src: 'images/ceyloncraft-cart.webp', alt: 'Cart with gift wrap, delivery fee and WhatsApp checkout form' },
+      { src: 'images/ceyloncraft-phone-si.webp', alt: 'Ceyloncraft on a phone in Sinhala', phone: true },
+    ],
+    en: {
+      summary: 'A bilingual online store for traditional Sri Lankan crafts, built for a small shop that takes orders on WhatsApp and is paid by bank transfer or cash on delivery.',
+      features: ['Shop with craft, village, price and search filters', 'Product pages with stock levels, materials, care and the story of the village each craft comes from', 'Cart with gift wrap, delivery fees by district and a free-delivery threshold', 'WhatsApp or email checkout with an order number and bank transfer or cash-on-delivery details', 'Saved items, English and Sinhala, dark mode', 'All shop settings in one file, so it can be set up for another shop'],
+    },
+    si: {
+      summary: 'WhatsApp මගින් ඇණවුම් ලබාගෙන බැංකු මාරුවෙන් හෝ භාරදීමේදී මුදලින් ගෙවීම් ලබන කුඩා වෙළඳසැලක් සඳහා හදපු, සාම්ප්‍රදායික ශ්‍රී ලාංකේය අත්කම් විකුණන ද්විභාෂා online store එකක්.',
+      features: ['අත්කම, ගම්මානය, මිල සහ සෙවීම අනුව filters', 'තොගය, ද්‍රව්‍ය සහ ගම්මානයේ කතාව සහිත භාණ්ඩ පිටු', 'තෑගි ඇසුරුම, දිස්ත්‍රික්කය අනුව බෙදාහැරීමේ ගාස්තු සහිත කරත්තය', 'ඇණවුම් අංකය සහිත WhatsApp / email checkout', 'සුරැකි භාණ්ඩ, සිංහල සහ ඉංග්‍රීසි, dark mode', 'වෙනත් වෙළඳසැලකට පහසුවෙන් සකස් කළ හැක'],
+    },
   },
   {
     slug: 'edubridge',
