@@ -450,8 +450,7 @@ export const projects: Project[] = [
     year: '2026',
     category: 'web',
     stack: ['Astro 5', 'Tailwind CSS 4', 'TypeScript', 'GitHub Pages'],
-    repo: gh('Ceyloncraft'),
-    live: 'https://malingaprabhath7-maker.github.io/Ceyloncraft/',
+    // live demo link goes here once the public ceyloncraft-demo repo is set up
     images: [
       { src: 'images/ceyloncraft-home.webp', alt: 'Ceyloncraft home page with handmade craft categories' },
       { src: 'images/ceyloncraft-shop.webp', alt: 'Shop page with craft, village and price filters' },
