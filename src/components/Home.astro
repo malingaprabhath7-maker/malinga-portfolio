@@ -157,7 +157,7 @@ const waLink = 'https://wa.me/' + profile.phone.replace(/\D/g, '');
 <section id="certificates" class="border-t border-line bg-surface">
   <div class="mx-auto max-w-6xl px-5 py-20">
     <h2 class="font-display text-4xl font-bold tracking-tight">{t.certsTitle}</h2>
-    <div class="mt-10 grid gap-8 md:grid-cols-2">
+    <div class="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {certificates.map((c) => (
         <figure>
           <a href={url(c.img)} target="_blank" rel="noopener" class="block overflow-hidden rounded-2xl border border-line" aria-label={`${t.viewCert}: ${c[lang]}`}>

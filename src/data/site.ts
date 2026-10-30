@@ -472,8 +472,8 @@ export const projects: Project[] = [
     year: '2025',
     category: 'study',
     stack: ['System design', 'Database', 'Web'],
-    en: { summary: 'A learning management system for a school: student and teacher management, course content and assignment tracking. University mini project.' },
-    si: { summary: 'පාසලක් සඳහා LMS එකක්: සිසුන් සහ ගුරුවරුන් කළමනාකරණය, පාඩම් අන්තර්ගතය සහ පැවරුම්. විශ්වවිද්‍යාල mini project එකක්.' },
+    en: { summary: 'A simplified web-based school management system for the digital transformation of Sri Lankan schools: student and teacher management, course content and assignment tracking. The research abstract I co-authored on it was presented at RASAS 2026, University of Ruhuna.' },
+    si: { summary: 'ශ්‍රී ලංකා පාසල්වල ඩිජිටල් පරිවර්තනය සඳහා සරල web පාදක පාසල් කළමනාකරණ පද්ධතියක්: සිසුන් සහ ගුරුවරුන් කළමනාකරණය, පාඩම් අන්තර්ගතය සහ පැවරුම්. මා සම-කතෘ වූ මෙහි පර්යේෂණ සාරාංශය RASAS 2026 (රුහුණ විශ්වවිද්‍යාලය) හි ඉදිරිපත් කරන ලදී.' },
   },
   {
     slug: 'smoke-alarm',
@@ -540,6 +540,7 @@ export const skills = {
 };
 
 export const certificates = [
+  { img: 'images/cert-rasas.webp', en: 'Co-author, research abstract: EduBridge, a simplified web-based school management system for Sri Lankan schools', si: 'පර්යේෂණ සාරාංශයේ සම-කතෘ: EduBridge, ශ්‍රී ලංකා පාසල් සඳහා සරල web පාදක පාසල් කළමනාකරණ පද්ධතියක්', by: 'RASAS 2026 · 11th Ruhuna Arts Students’ Annual Sessions · University of Ruhuna', when: '29 Oct 2026' },
   { img: 'images/cert-web.webp', en: 'Web Design & Development for Beginners', si: 'ආරම්භකයින් සඳහා Web Design සහ Development', by: 'American Corner Matara · U.S. Embassy in Sri Lanka', when: 'Apr – Jul 2026' },
   { img: 'images/cert-cyber.webp', en: 'Cyber Security Foundations Course', si: 'Cyber Security මූලික පාඨමාලාව', by: 'American Corner Matara · U.S. Embassy in Sri Lanka', when: 'May – Jul 2026' },
 ];
