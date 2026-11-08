@@ -332,19 +332,24 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: 'faq-chatbot',
-    name: 'FAQ Chatbot',
+    slug: 'pilithuru',
+    name: 'Pilithuru — FAQ chat for businesses',
     year: '2026',
     category: 'ai',
-    stack: ['Python', 'Streamlit', 'NLTK', 'scikit-learn'],
-    repo: gh('FAQ_Chatbot'),
-    images: [{ src: 'images/chatbot.webp', alt: 'FAQ Chatbot answering a question about order tracking' }],
+    stack: ['TypeScript', 'NLP (TF-IDF)', 'Astro 5', 'Tailwind CSS 4', 'esbuild'],
+    live: 'https://malingaprabhath7-maker.github.io/pilithuru/',
+    images: [
+      { src: 'images/pilithuru-home.webp', alt: 'Pilithuru home page with a live chat demo answering a Singlish question' },
+      { src: 'images/pilithuru-builder.webp', alt: 'Builder for writing questions and answers with a live preview and embed code' },
+      { src: 'images/pilithuru-phone-si.webp', alt: 'Pilithuru chat on a phone answering in Sinhala', phone: true },
+    ],
     en: {
-      summary: 'Answers frequently asked questions by matching the user’s question to a FAQ list with TF-IDF and cosine similarity. Built for the CodeAlpha AI internship.',
-      features: ['NLP preprocessing with NLTK', 'TF-IDF vectors and cosine similarity matching', 'Confidence score and threshold control', 'Streamlit chat interface'],
+      summary: 'A chat assistant that answers a small business’s common questions in Sinhala, Singlish and English, and hands anything it can’t answer over to WhatsApp. Owners build it themselves and add it to any website with one line of code.',
+      features: ['Question matching in the browser with TF-IDF over words and word pieces, synonyms and spelling correction', 'Understands Singlish (“cake ekak kiyada?”) and replies in the language the customer used', 'Embeddable widget (about 30 KB) in a shadow root, works on WordPress, Wix, Shopify or any HTML site', 'Builder with live preview, test log with match scores, unanswered questions, JSON import and export', 'WhatsApp and email handover, voice input and read-aloud, helpful / not helpful feedback', 'No server or AI API: no cost per message; matcher covered by automated tests in CI'],
     },
     si: {
-      summary: 'TF-IDF සහ cosine similarity මගින් පරිශීලකයාගේ ප්‍රශ්නයට ගැළපෙන FAQ පිළිතුර සොයන chatbot එකක්. CodeAlpha AI internship එක සඳහා.',
+      summary: 'කුඩා ව්‍යාපාරයකට නිතර එන ප්‍රශ්නවලට සිංහලෙන්, Singlish වලින් සහ ඉංග්‍රීසියෙන් පිළිතුරු දී, පිළිතුරක් නැති දේ WhatsApp වෙත යොමු කරන chat සහායකයෙක්. අයිතිකරුවන්ටම එය සකසා, code පේළියකින් ඕනෑම වෙබ් අඩවියකට එක් කළ හැකියි.',
+      features: ['Browser එක තුළම TF-IDF, සමාන පද සහ අකුරු නිවැරදි කිරීම මගින් ප්‍රශ්න ගැළපීම', 'Singlish (“cake ekak kiyada?”) තේරුම් ගෙන අහපු භාෂාවෙන්ම පිළිතුරු', 'ඕනෑම වෙබ් අඩවියකට එක් කළ හැකි 30 KB පමණ widget එකක්', 'සජීවී පෙරදසුන, පරීක්ෂණ සටහන සහ JSON import/export සහිත builder එකක්', 'WhatsApp / email යොමු කිරීම, කටහඬින් ප්‍රශ්න සහ පිළිතුරු කියවීම', 'Server හෝ AI API නැහැ: පණිවිඩයකට ගාස්තුවක් නැහැ'],
     },
   },
   {
