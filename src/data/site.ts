@@ -265,6 +265,29 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: 'panthiya',
+    name: 'Panthiya — tuition class manager',
+    year: '2026',
+    category: 'web',
+    stack: ['React 19', 'TypeScript', 'Tailwind CSS 4', 'Firebase', 'PWA'],
+    live: 'https://malingaprabhath7-maker.github.io/panthiya/',
+    images: [
+      { src: 'images/panthiya-today.webp', alt: 'Teacher dashboard with students, attendance, fees collected and quick actions' },
+      { src: 'images/panthiya-class-page.webp', alt: 'Public class page with timetable, fees and a chatbot' },
+      { src: 'images/panthiya-fees.webp', alt: 'Monthly fees with paid and unpaid students and WhatsApp reminders' },
+      { src: 'images/panthiya-student-si.webp', alt: 'Student page in Sinhala with attendance, card status and tutes', phone: true },
+      { src: 'images/panthiya-attendance-si.webp', alt: 'Attendance on a phone in Sinhala with QR scan and card warnings', phone: true },
+    ],
+    en: {
+      summary: 'A web app for Sri Lankan tuition teachers: students, QR attendance, monthly class cards with WhatsApp reminders, tutes and recordings, paper marks, notices, a private page for every student and parent, and a public class page with a chatbot. Sinhala and English, works offline, with a demo class to try.',
+      features: ['QR attendance two ways: the teacher scans student cards, or students scan a class QR that changes every 30 seconds', 'Class cards: tutes, recordings and self check-in only for students whose monthly card is paid (free cards and grace days supported)', 'Fees by month with discounts, free cards, collected vs expected, and WhatsApp reminders in Sinhala or English', 'Papers and marks with averages and ranks; notices to batches; printable student cards; CSV exports', 'Private student and parent pages and a public class page with registration form and the Pilithuru chatbot', 'Firebase Auth and Firestore with offline cache and security rules; installable PWA; automated tests in CI'],
+    },
+    si: {
+      summary: 'ලාංකීය ටියුෂන් ගුරුවරුන් සඳහා web app එකක්: ළමයි, QR පැමිණීම, WhatsApp මතක් කිරීම් සහිත මාසික පන්ති card, tutes සහ recordings, paper ලකුණු, නිවේදන, හැම ළමයෙකුටම සහ දෙමාපියන්ට පෞද්ගලික පිටුවක් සහ chatbot එකක් සහිත public පන්ති පිටුවක්. සිංහල සහ ඉංග්‍රීසි, internet නැතුවත් වැඩ කරයි.',
+      features: ['ගුරුවරයා ශිෂ්‍ය card scan කිරීමෙන් හෝ ළමයි තත්පර 30කට වරක් වෙනස් වන පන්ති QR එක scan කිරීමෙන් පැමිණීම', 'Card ගෙවූ ළමයින්ට පමණක් tutes, recordings සහ self check-in (නොමිලේ card සහ ගෙවීමට දින සහිතව)', 'අඩු කිරීම්, නොමිලේ card, ලැබුණු/ලැබිය යුතු මුදල් සහ WhatsApp මතක් කිරීම් සහිත මාසික ගාස්තු', 'සාමාන්‍යය සහ ස්ථාන සහිත ලකුණු, නිවේදන, print කළ හැකි ශිෂ්‍ය කාඩ්පත්, CSV export', 'ශිෂ්‍ය/දෙමාපිය පිටු සහ ලියාපදිංචි පෝරමය හා Pilithuru chatbot සහිත public පන්ති පිටුව', 'Offline cache සහ security rules සහිත Firebase; install කළ හැකි PWA; CI හි tests'],
+    },
+  },
+  {
     slug: 'viyadam-pota',
     name: 'Viyadam Pota · වියදම් පොත',
     year: '2026',
